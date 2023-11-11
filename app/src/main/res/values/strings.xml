@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Chat</string>
+    <string name="button">Log In</string>
+    <string name="input_password">Input Password</string>
 </resources>
