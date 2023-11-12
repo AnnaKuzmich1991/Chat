@@ -14,25 +14,35 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         result = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode== RESULT_OK) {
-                //TODO: startChat
+            if (it.resultCode == RESULT_OK) {
+                startChat()
             } else {
                 //TODO: finish
             }
         }
     }
-    fun startAuth (){
+
+    fun startAuth() {
         val intent = Intent(applicationContext, AuthActivity::class.java)
 
         result.launch(intent)
     }
+
     override fun onResume() {
         super.onResume()
         FirebaseAuth.getInstance().currentUser
         if (FirebaseAuth.getInstance().currentUser == null) {
             startAuth()
-        } else {//TODO: chatActivity
+        } else {
+            startChat()
 
         }
+    }
+
+    fun startChat(){
+        val startChat = Intent(applicationContext, ChatNewActivity::class.java)
+        startActivity(startChat)
+        finish()
+
     }
 }
