@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.sapon.chat.activity.ChatActivity
+import com.sapon.chat.activity.SplashActivity
 import com.sapon.chat.databinding.FragmentSignoffBinding
 
 class SignOffFragment : Fragment() {
@@ -40,7 +41,7 @@ class SignOffFragment : Fragment() {
         val confirmationButton: Button = binding.buttonConfirmation
         confirmationButton.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
-            val login = Intent(activity, ChatActivity::class.java)
+            val login = Intent(activity, SplashActivity::class.java)
             startActivity(login)
             activity?.finish()
         }
