@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "413720208520",
+    "firebase_url": "https://chat-9c2fc-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "chat-9c2fc",
     "storage_bucket": "chat-9c2fc.appspot.com"
   },
