@@ -1,4 +1,4 @@
-package com.sapon.chat.activity.ui.slideshow
+package com.sapon.chat.activity.ui.singoff
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
-import com.sapon.chat.activity.ChatActivity
 import com.sapon.chat.activity.SplashActivity
 import com.sapon.chat.databinding.FragmentSignoffBinding
 

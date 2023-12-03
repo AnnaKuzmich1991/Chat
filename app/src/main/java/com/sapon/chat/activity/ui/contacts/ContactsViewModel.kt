@@ -1,13 +1,13 @@
-package com.sapon.chat.activity.ui.slideshow
+package com.sapon.chat.activity.ui.contacts
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SignOffViewModel : ViewModel() {
+class ContactsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Are you sure to log out?"
+        value = "This is a contacts fragment"
     }
     val text: LiveData<String> = _text
 }

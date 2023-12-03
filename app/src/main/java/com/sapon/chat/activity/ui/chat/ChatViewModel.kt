@@ -1,4 +1,4 @@
-package com.sapon.chat.activity.ui.home
+package com.sapon.chat.activity.ui.chat
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
