@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -37,7 +38,7 @@ class ContactsFragment : Fragment() {
         val contactsViewModel = ViewModelProvider(this).get(ContactsViewModel::class.java)
         _binding = FragmentContactsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        binding.rvContacts.layoutManager= LinearLayoutManager(context)
         return root
     }
 
@@ -47,19 +48,25 @@ class ContactsFragment : Fragment() {
         val usersRef = dataBase.getReference(USERS_REF)
         usersRef.orderByChild("name") //filtering by name
             .equalTo("John")
-            .addValueEventListener(object : ValueEventListener {override fun onDataChange(snapshot: DataSnapshot) {
-                Timber.d("Got nice snapshot!")
-                if (snapshot.exists()){
-                    val list = mutableListOf<User>()
-                    for (dataSnapshot in snapshot.children){
-                        val user : User?= dataSnapshot.getValue(User::class.java)
-                        user.let { list.add(user!!) }
-                        Log.d("myTag","User found: $user")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    Timber.d("Got nice snapshot!")
+                    if (snapshot.exists()) {
+                        val list = mutableListOf<User>()
+                        for (dataSnapshot in snapshot.children) {
+                            val user: User? = dataSnapshot.getValue(User::class.java)
+                            user.let { list.add(user!!) }
+                            Log.d("myTag", "User found: $user")
+                        }
+                        val adapter = ContactsAdapter()
+                        adapter.users = list
+                        binding.rvContacts.adapter = adapter
+
+                        //adapter.notifyDataSetChanged()
+                    } else {
+                        Timber.e("Contacts snapshot doesn't exist")
                     }
-                } else{
-                    Timber.e("Contacts snapshot doesn't exist")
                 }
-            }
 
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")
